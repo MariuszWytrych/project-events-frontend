@@ -1,0 +1,23 @@
+<form (ngSubmit)="register()">
+  <div>
+    <label>Login
+      <input type="text" placeholder="Nazwa użytkownika" name="username" [(ngModel)]="newUser.name">
+    </label>
+  </div>
+  <div>
+    <label>E-mail
+      <input type="text" placeholder="Adres e-mail" name="email" [(ngModel)]="newUser.mail">
+    </label>
+  </div>
+  <div>
+    <label>Hasło
+      <input type="password" placeholder="Hasło" name="password" [(ngModel)]="newUser.password">
+    </label>
+  </div>
+  <div>
+    <label>Data urodzenia
+      <input type="datetime-local" placeholder="Data urodzenia" name="dateOfBirth" [(ngModel)]="newUser.dateOfBirth">
+    </label>
+  </div>
+  <input type="submit" value="Zarejestruj">
+</form>
