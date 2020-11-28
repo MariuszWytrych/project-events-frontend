@@ -9,6 +9,7 @@ import {WelcomeComponent} from './welcome/welcome.component';
 import {AuthorizationInterceptor} from '../interceptor/authorization.interceptor';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
+import { EventsListComponent } from './events-list/events-list.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,6 +20,9 @@ const routes: Routes = [{
 }, {
   path: 'login',
   component: LoginComponent
+}, {
+  path: 'events',
+  component: EventsListComponent
 }
 ];
 
@@ -27,7 +31,8 @@ const routes: Routes = [{
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EventsListComponent
   ],
   imports: [
     BrowserModule,

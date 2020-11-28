@@ -5,8 +5,8 @@
     <input type="submit" value="Zaloguj">
   </form>
 </div>
-<div *ngIf="loggedIn">
-  Użytkownik: {{loggedUser.name}}
-  <div>
+  <div *ngIf="loggedIn">
+    <h3>Witaj: {{loggedUser.name}}</h3>
+    <a routerLink="/events">Zobacz imprezy</a>
   </div>
-</div>
+

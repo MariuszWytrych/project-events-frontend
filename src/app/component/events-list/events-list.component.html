@@ -1,0 +1,56 @@
+<form (ngSubmit)="addNewEvent()">
+  <div><label>
+    Nazwa:
+    <input type="text" name="eventName" [(ngModel)]="newEvent.eventName">
+  </label>
+  <label>
+    Krótki opis:
+    <input type="text" name="description" [(ngModel)]="newEvent.description">
+  </label>
+  </div>
+  <div><label>
+    Data rozpoczęcia:
+    <input type="date" name="newEventStartDate" [(ngModel)]="newEventStartDate">
+  </label>
+    <label>
+    Czas rozpoczęcia:
+    <input type="time" name="newEventStartTime" [(ngModel)]="newEventStartTime">
+  </label>
+  </div>
+  <div>
+    <label>
+    Miasto:
+    <input type="text" name="city" [(ngModel)]="newEvent.city">
+  </label></div>
+  <div><label>
+    Ulica:
+    <input type="text" name="street" [(ngModel)]="newEvent.street">
+  </label></div>
+  <div><label>
+    Kod pocztowy:
+    <input type="text" name="zipcode" [(ngModel)]="newEvent.zipcode">
+  </label></div>
+  <div><input type="submit" value="Utwórz wydarzenie"></div>
+</form>
+<table border="2">
+  <thead>
+  <tr>
+    <th>Nazwa</th>
+    <th>Krótki opis</th>
+    <th>Data rozpoczęcia</th>
+    <th>Adres miasto</th>
+    <th>Adres ulica</th>
+    <th>Adres kod</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let event of eventList">
+    <td>{{event.eventName}}</td>
+    <td>{{event.description}}</td>
+    <td>{{event.eventStart}}</td>
+    <td>{{event.city}}</td>
+    <td>{{event.street}}</td>
+    <td>{{event.zipcode}}</td>
+  </tr>
+  </tbody>
+</table>
