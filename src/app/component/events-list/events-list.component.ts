@@ -28,16 +28,20 @@ export class EventsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  addNewEvent(): void {
+    this.newEvent.eventStart = this.newEventStartDate + 'T' + this.newEventStartTime + ':00';
+    this.httpClient.post(this.urlServer, this.newEvent)
+      .subscribe(() => this.loadData());
+  }
+
+  private loadData(): void {
     this.httpClient.get<Event[]>(this.urlServer)
       .subscribe(events => {
         events.forEach(event => event.eventStart = event.eventStart.replace('T', ' '));
         this.eventList = events;
       });
-  }
-
-  addNewEvent(): void {
-    this.newEvent.eventStart = this.newEventStartDate + 'T' + this.newEventStartTime + ':00';
-    this.httpClient.post<Event>(this.urlServer, this.newEvent)
-      .subscribe(event => this.eventList.push(event));
   }
 }
