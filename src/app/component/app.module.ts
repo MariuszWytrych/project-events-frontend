@@ -10,6 +10,7 @@ import {AuthorizationInterceptor} from '../interceptor/authorization.interceptor
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import { EventsListComponent } from './events-list/events-list.component';
+import { EventByIdComponent } from './event-by-id/event-by-id.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,9 @@ const routes: Routes = [{
 }, {
   path: 'events',
   component: EventsListComponent
+}, {
+  path: 'event-by-id/:id',
+  component: EventByIdComponent
 }
 ];
 
@@ -32,7 +36,8 @@ const routes: Routes = [{
     RegisterComponent,
     LoginComponent,
     WelcomeComponent,
-    EventsListComponent
+    EventsListComponent,
+    EventByIdComponent
   ],
   imports: [
     BrowserModule,

@@ -10,13 +10,16 @@ export class EventsListComponent implements OnInit {
   newEventStartDate = new Date().toISOString().split('T')[0];
   newEventStartTime = '12:00';
   newEvent: Event = {
+    id: 0,
     eventName: '',
     description: '',
     eventStart: '',
     street: '',
     city: '',
-    zipcode: ''
+    zipcode: '',
+    organizerName: ''
   };
+
 
 
   eventList: Event[] = [];

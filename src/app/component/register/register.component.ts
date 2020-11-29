@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RegisterNewUser} from '../../model/registerNewUser';
+import {RegisterNewUser} from '../../model/register-new-user';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 

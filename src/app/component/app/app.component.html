@@ -1,1 +1,20 @@
+<div *ngIf="loggedIn">
+  <div>
+    <input type="button" value="Wyloguj" (click)="logout()">
+  </div>
+  <p></p>
+  <h3>Cześć {{loggedUser.username}}!</h3>
+  <a routerLink="/events">Zobacz imprezy</a>
+</div>
+<div *ngIf="!loggedIn">
+  <h3>Witaj w aplikacji do organizowania imprez. </h3>
+  <div>
+    Jeśli masz już konto to kliknij
+    <a routerLink="login">Zaloguj</a>
+  </div>
+  <div>
+    Jeśli nie masz jeszcze konta to kliknij
+    <a routerLink="register">Zarejestruj</a>
+  </div>
+</div>
 <router-outlet></router-outlet>

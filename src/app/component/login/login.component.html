@@ -1,12 +1,7 @@
-<div *ngIf="!loggedIn">
-  <form (ngSubmit)="login()" autocomplete="off">
-    <input type="text" placeholder="Nazwa użytkownika" name="name" [(ngModel)]="loginData.name">
-    <input type="password" placeholder="Hasło" name="password" [(ngModel)]="loginData.password">
-    <input type="submit" value="Zaloguj">
-  </form>
-</div>
-  <div *ngIf="loggedIn">
-    <h3>Witaj: {{loggedUser.name}}</h3>
-    <a routerLink="/events">Zobacz imprezy</a>
-  </div>
+<form (ngSubmit)="login()" autocomplete="off">
+  <input type="text" placeholder="Nazwa użytkownika" name="name" [(ngModel)]="loginData.username">
+  <input type="password" placeholder="Hasło" name="password" [(ngModel)]="loginData.password">
+  <input type="submit" value="Zaloguj">
+</form>
+
 
