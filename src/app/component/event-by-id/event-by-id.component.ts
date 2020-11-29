@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {GlobalsService} from '../../service/globals.service';
 import {Event} from '../../model/event';
 import {ActivatedRoute, Router} from '@angular/router';
+import {InvitePerson} from '../../model/invite-person';
 
 @Component({
   selector: 'app-event-by-id',
@@ -18,6 +19,9 @@ export class EventByIdComponent implements OnInit {
     zipcode: '',
     organizerName: ''
   };
+  invited: InvitePerson = {
+    email: ''
+  };
 
   constructor(private globals: GlobalsService, private httpClient: HttpClient, private activatedRoute: ActivatedRoute) {
     this.activatedRoute = activatedRoute;
@@ -28,11 +32,19 @@ export class EventByIdComponent implements OnInit {
   }
 
   private loadEvent(): void {
-    const myParam1 = this.activatedRoute
+    const id = this.activatedRoute
       .snapshot
-      .params.myParam1;
-    console.log(myParam1);
-    this.httpClient.get<Event>(this.globals.apiUrl + '/events/{id}')
-      .subscribe(eventById => this.eventById = eventById);
+      .params.id;
+    this.httpClient.get<Event>(this.globals.apiUrl + '/events/' + id)
+      .subscribe(event => {
+        event.eventStart = event.eventStart.replace('T', ' ');
+        this.eventById = event;
+      });
+  }
+
+  invite(): void {
+    // this.httpClient.post<InvitePerson>(this.globals.apiUrl + '/events/invitation/send', this.invited)
+    //   .subscribe();
+    console.log('Wysyłam zaprosznie')
   }
 }

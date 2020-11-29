@@ -1,1 +1,21 @@
-A {{eventById.id}}
+<h2>{{eventById.eventName}}</h2>
+<div>Szczegóły:</div>
+<ol>
+  <li><b>Opis:</b> {{eventById.description}}</li>
+  <li><b>Czas start: </b>{{eventById.eventStart}}</li>
+  <li><b>Organizator: </b>{{eventById.organizerName}}</li>
+  <li><b>Adres:</b>
+    <ul>
+      <li><b>Miasto:</b> {{eventById.city}}</li>
+      <li><b>Ulica: </b>{{eventById.street}}</li>
+      <li><b>Kod pocztowy: </b>{{eventById.zipcode}}</li>
+    </ul>
+  </li>
+</ol>
+<form (ngSubmit)="invite()">
+  <label>
+    Wpisz email osoby, którą chcesz zaprosić
+    <div><input type="text" [(ngModel)]="invited.email"></div>
+  </label>
+  <div><input type="submit" value="Wyślij zaproszenie"></div>
+</form>
