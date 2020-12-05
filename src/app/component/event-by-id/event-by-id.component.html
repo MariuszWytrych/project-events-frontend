@@ -12,10 +12,23 @@
     </ul>
   </li>
 </ol>
-<form (ngSubmit)="invite()">
-  <label>
-    Wpisz email osoby, którą chcesz zaprosić
-    <div><input type="text" [(ngModel)]="invited.email"></div>
-  </label>
-  <div><input type="submit" value="Wyślij zaproszenie"></div>
-</form>
+<!--<form name="event" (ngSubmit)="invite()">-->
+<!--  <label>-->
+<!--    Wpisz email osoby, którą chcesz zaprosić-->
+<!--    <div><input type="text" [(ngModel)]="invitePerson.email"></div>-->
+<!--  </label>-->
+<!--  <div><input type="submit" value="Wyślij zaproszenie"></div>-->
+<!--</form>-->
+<div>Komentarz
+  <form name="comment" (ngSubmit)="addNewComment()">
+    <textarea name="content" type="text" [(ngModel)]="comment.content"></textarea>
+    <input type="submit" value="Dodaj komentarz">
+  </form>
+</div>
+<div *ngFor="let comment of comments">
+  <b>
+    <div>
+      {{comment.username}}
+    </div>
+  </b>
+  <div>{{comment.content}}</div></div>

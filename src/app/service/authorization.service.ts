@@ -15,6 +15,7 @@ export class AuthorizationService {
   constructor(private globals: GlobalsService, private httpClient: HttpClient) {
   }
   login(loginData: LoginData, successCallback: (LoggedUser) => void, errorCallback: () => void): void {
+    localStorage.removeItem('jwt');
     this.httpClient.post<LoggedUser>(this.globals.apiUrl + '/user/login', loginData)
       .subscribe(loggedUser => {
         this.loggedUser = loggedUser;

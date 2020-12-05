@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GlobalsService} from '../../service/globals.service';
 import {Event} from '../../model/event';
+import {Comment} from '../../model/comment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InvitePerson} from '../../model/invite-person';
 
@@ -19,9 +20,16 @@ export class EventByIdComponent implements OnInit {
     zipcode: '',
     organizerName: ''
   };
-  invited: InvitePerson = {
+  invitePerson: InvitePerson = {
     email: ''
   };
+  comment: Comment = {
+    username: '',
+    eventId: 0,
+    content: ''
+  };
+  comments: Comment[] = [];
+
 
   constructor(private globals: GlobalsService, private httpClient: HttpClient, private activatedRoute: ActivatedRoute) {
     this.activatedRoute = activatedRoute;
@@ -29,6 +37,16 @@ export class EventByIdComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvent();
+  }
+  private loadComments(): void {
+    const id = this.activatedRoute
+      .snapshot
+      .params.id;
+    this.httpClient.get<Comment[]>(this.globals.apiUrl + '/comment' + '/' + id + '/comments')
+      .subscribe(comments => {
+        this.comments = comments;
+        console.log(comments);
+      });
   }
 
   private loadEvent(): void {
@@ -40,11 +58,22 @@ export class EventByIdComponent implements OnInit {
         event.eventStart = event.eventStart.replace('T', ' ');
         this.eventById = event;
       });
+    this.loadComments();
   }
 
   invite(): void {
     // this.httpClient.post<InvitePerson>(this.globals.apiUrl + '/events/invitation/send', this.invited)
     //   .subscribe();
-    console.log('Wysyłam zaprosznie')
+    console.log('Wysyłam zaprosznie');
+  }
+
+
+  addNewComment(): void {
+    const id = this.activatedRoute
+      .snapshot
+      .params.id;
+    this.comment.eventId = id;
+    this.httpClient.post(this.globals.apiUrl + '/comment', this.comment)
+      .subscribe(() => this.loadComments());
   }
 }
